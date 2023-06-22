@@ -1,0 +1,24 @@
+<div id="<%= dom_id submission %>">
+  <h3 class="text-primary"><%= submission.title.titleize %> </h3>
+  <h5 class="mt-5">Description:</h5>
+  <p class="text-muted"><%= submission.description %></p>
+  <br>
+  <div class="text-muted">
+    <p class="text-sm">Requested by
+      <b class="d-block"><%= "Aji" %></b>
+    </p>
+    <p class="text-sm">Creator Supervisor
+      <b class="d-block">Ivan</b>
+    </p>
+    <p class="text-sm">Status
+      <b class="d-block"><%= submission.status.titleize %>, Waiting "User" to Approve</b>
+    </p>
+  </div>
+  <div class="text-center mt-5 mb-3">
+    <% if current_user == submission.user %>
+      <%= link_to "Proceed", publish_submission_path(submission), data: { turbo_method: :put}, class: "btn btn-sm btn-success"  unless submission.draft_in_progress?%>
+    <% else %>
+      <a href="#" class="btn btn-sm btn-primary">Approve</a>
+    <% end %>
+  </div>
+</div>

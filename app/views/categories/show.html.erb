@@ -1,0 +1,49 @@
+<%= form_with(url: category_submissions_path(@category), local: true, method: :post) do |form| %>
+  <div class="row justify-content-center">
+    <div class="card border-dark mb-3" style="width: 80rem; align">
+      <div class="card-header">
+        <h1 style="text-align: center;"><%= @category.name %></h1>
+      </div>
+      <div class="card-body">
+        <div class="input-group">
+          <% @category.questions.each do |cat| %>
+            <div class="col-2 border-right mb-3">
+              <h5><%= cat.name %></h5>
+              <%= hidden_field_tag cat.id %>
+            </div>
+            <div class="col-10 border-left">
+              <% case cat.question_type %>
+              <% when 'single_choice' %>
+              <div class="form-check border-bottom mb-5">
+                <% cat.answers.each do |answer| %>
+                  <div class="form-check-inline">
+                    <p>
+                      <%= radio_button_tag "question_#{cat.id}", answer.name %>
+                      <%= answer.name %>
+                    </p>
+                  </div>
+                <% end %>
+              </div>
+              <% when 'multiple_choice' %>
+              <div class="form-check border-bottom mb-5">
+                <% cat.answers.each do |answer| %>
+                  <div class="form-check form-check-inline">
+                    <p>
+                      <%= check_box_tag "question_#{cat.id}[]", answer.name %>
+                      <%= answer.name %>
+                    </p>
+                  </div>
+                <% end %>
+              </div>
+              <% when 'long_answer' %>
+              <%= text_field_tag "question_#{cat.id}", nil, placeholder: "#{cat.name}", class: "form-control border" %>
+              <% when 'date_answer' %>
+              <%= text_area_tag cat.id %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

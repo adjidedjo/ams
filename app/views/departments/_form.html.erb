@@ -1,0 +1,12 @@
+<%= simple_form_for(@department) do |f| %>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Department Name*</label>
+      <%= f.input :name, label: false, input_html: { class: 'form-control', placeholder: placeholder } %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Back", departments_path, class:"btn btn-secondary" %>
+    <%= f.button :submit, "Save", class:"btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,59 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Request Form</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Submission</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<section class="content">
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Request Detail</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+          <%= render @submission %>
+        </div>
+        <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+          <h3 class="text-primary">Recent comment</h3>
+          <div class="post">
+            <% unless @comments.blank? %>
+              <% @comments.each do |comment| %>
+                <%= render 'comments/comment', submission: @submission, comment: comment %>
+              <% end %>
+            <% else %>
+              <h5>No Comment not Found</h5>
+            <% end %>
+          </div>
+          <div class="comment-post">
+            <%= render 'comments/form', submission: @submission %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</section>

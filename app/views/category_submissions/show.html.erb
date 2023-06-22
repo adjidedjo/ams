@@ -1,0 +1,87 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Request Form</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Submission</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<section class="content">
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Request Detail</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+          <h3><%= @category_submission.category.name %></h3>
+          <div class="input-group">
+            <% @category_submission.user_answers.each do |key, value| %>
+              <div class="col-3">
+                <%= key %>
+              </div>
+              <div class="col-7">
+                :   <%= value.is_a?(Array) ? value.join(", ") : value %>
+              </div>
+            <% end %>
+          </div>
+          <br />
+          <div class="text-muted">
+            <p class="text-sm">Requested by
+              <b class="d-block"><%= "Aji" %></b>
+            </p>
+            <p class="text-sm">Creator Supervisor
+              <b class="d-block">Ivan</b>
+            </p>
+            <p class="text-sm">Status
+              <b class="d-block"><%= @category_submission.published? ? "Completed" : @category_submission.status.humanize %></b>
+            </p>
+          </div>
+          <div class="text-center mt-5 mb-3">
+            <% if policy(@category_submission).next_approve? %>
+              <%= link_to apply_label(@category_submission), next_approve_category_submission_path(@category_submission), 
+              data: { turbo_method: :put}, class: "btn btn-sm btn-success" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+          <h3 class="text-primary">Recent comment</h3>
+          <div class="post">
+            <% unless @comments.blank? %>
+              <% @comments.each do |comment| %>
+                <%= render 'comments/comment', category_submission: @category_submission, comment: comment %>
+              <% end %>
+            <% else %>
+              <h5>No Comment not Found</h5>
+            <% end %>
+          </div>
+          <div class="comment-post">
+            <%= render 'comments/form', category_submission: @category_submission %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</section>

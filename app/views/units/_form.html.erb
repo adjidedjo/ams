@@ -1,0 +1,17 @@
+<%= simple_form_for(@unit) do |f| %>
+  <div class="card-body">
+    <div class="form-group">
+      <%= f.input :name, input_html: { class: 'form-control', placeholder: placeholder } %>
+    </div>
+    <div class="form-group">
+      <%= f.association :department, as: :select, input_html: { class: 'form-select', placeholder: placeholder } %>
+    </div>
+    <div class="form-group">
+      <%= f.input :email_approval_person, input_html: { class: 'form-select', placeholder: placeholder } %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Back", units_path, class:"btn btn-secondary" %>
+    <%= f.button :submit, "Save", class:"btn btn-primary" %>
+  </div>
+<% end %>

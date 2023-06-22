@@ -1,0 +1,9 @@
+<div class='nested-form-wrapper form-inline' data-new-record="<%= form.object.new_record? %>">
+  <div class='form-group'>
+    <%= form.hidden_field :_destroy %>
+    <%= form.input_field :name, placeholder: 'Answer', class: 'form-control' %>
+    <small>
+      <%= link_to "Remove Answer", "#",class: "btn btn-outline-danger btn-sm", data: { action: "nested-form#remove" } %>
+    </small>
+  </div>
+</div>

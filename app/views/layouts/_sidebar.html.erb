@@ -1,0 +1,85 @@
+<aside class="main-sidebar sidebar-dark-secondary elevation-4">
+  <!-- Brand Logo -->
+  <a href="home/index" class="brand-link">
+    <img src="/assets/royalcorp.png" alt="RoyalCorp Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">AMS</span>
+  </a>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    </div>
+    <!-- SidebarSearch Form -->
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+        <% dynamic_menu.each do |d| %>
+          <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                <%= d.name %>
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <% d.units.each do |du| %>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      <%= du.name %>
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <% du.categories.each do |dc| %>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <%= link_to category_path(dc), class: 'nav-link' do %>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p><%= dc.name %></p>
+                        <% end %>
+                      </li>
+                    </ul>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to home_index_path, class: 'nav-link' do %>
+            <i class="nav-icon fas fa-person-through-window"></i>
+            <p>My request</p>
+          <% end %>
+        </li>
+        <!-- List Master Data HRMS ONLY ADMIN -->
+        <% if current_user.admin? %>
+          <li class="nav-header">SETTINGS</li>
+          <li class="nav-item">
+            <%= link_to departments_path, class: 'nav-link' do %>
+              <i class="nav-icon fas fa-person-through-window"></i>
+              <p>Departments</p>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to units_path, class: 'nav-link' do %>
+              <i class="nav-icon fas fa-people-group"></i>
+              <p>Department Units</p>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to categories_path, class: 'nav-link' do %>
+              <i class="nav-icon fas fa-people-group"></i>
+              <p>Request Categories</p>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

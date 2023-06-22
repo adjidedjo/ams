@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  date_required: 2023-06-05
+  attachment: MyString
+  quantity: 1
+  unit: 1
+  contact_person: MyString
+  category: one
+
+two:
+  title: MyString
+  description: MyText
+  date_required: 2023-06-05
+  attachment: MyString
+  quantity: 1
+  unit: 1
+  contact_person: MyString
+  category: two

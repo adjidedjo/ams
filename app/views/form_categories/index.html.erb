@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Form categories</h1>
+
+<div id="form_categories">
+  <% @form_categories.each do |form_category| %>
+    <%= render form_category %>
+    <p>
+      <%= link_to "Show this form category", form_category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New form category", new_form_category_path %>

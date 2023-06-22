@@ -1,0 +1,2 @@
+module CategorySubmissionsHelper
+end

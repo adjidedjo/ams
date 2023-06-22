@@ -1,0 +1,12 @@
+[class*="sidebar-dark-"] {
+  background-color: #2962ff !important;
+}
+
+.auto-height-text {
+  height: auto !important;
+}
+
+.comment-pos {
+  position: absolute;
+  bottom: 0
+}

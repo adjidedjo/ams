@@ -1,0 +1,44 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>" data-controller='dynamic-select'>
+  <div class="card">
+    <div class="card-body">
+      <div class='form-group'>
+        <%= f.select :question_type,
+        options_for_select(Question.question_type_select, selected: f.object.question_type),
+        {},
+        'data-dynamic-select-target': 'select',
+        'data-action': 'dynamic-select#selected' %>
+      </div>
+      <div class='form-group form-inline'>
+        <%= f.hidden_field :_destroy %>
+        <%= f.text_field :name, placeholder: 'Question', class: 'form-control' %>
+        <small>
+          <%= link_to "#", data: { action: "nested-form#remove" } do  %>
+            <i class="nav-icon fas fa-xmark" style="color: #ef2929;"></i>
+          <% end %>
+        </small>
+      </div>
+      <%# Answer %>
+      <div data-controller="nested-form" data-dynamic-select-target='choice'>
+        <template data-nested-form-target='template_answer'>
+          <%= f.simple_fields_for :answers, Answer.new, child_index: 'TEMPLATE_RECORD' do |answer| %>
+            <%= render 'categories/answer_fields', form: answer %>
+          <% end %>
+        </template>
+        <%= f.simple_fields_for :answers do |answer| %>
+          <%= render 'categories/answer_fields', form: answer %>
+        <% end %>
+        <div data-nested-form-target="target"></div>
+        <div data-nested-form-target="add_item">
+          <%= link_to "#", class: "nav-link", data: {action: "nested-form#add_association"} do %>
+            <i class="nav-icon fas fa-square-plus" style="color: #4e9a06;"></i>
+            Answers
+          <% end %>
+        </div>
+      </div>
+      <div data-controller="nested-form" data-dynamic-select-target='long'>
+      </div>
+      <div data-controller="nested-form" data-dynamic-select-target='date'>
+      </div>
+    </div>
+  </div>
+</div>

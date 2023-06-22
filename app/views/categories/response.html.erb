@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+<%= render @category %>
+<% @category.questions.each do |cat| %>
+  <h2><%= cat.name %></h2>
+  <% case cat.question_type %>
+  <% when 'single_choice' %>
+  <% cat.answers.each do |answer| %>
+    <p>
+      <%= radio_button_tag cat.id, answer.id %>
+      <%= answer.name %>
+    </p>
+  <% end %>
+  <% when 'multiple_choice' %>
+  <% cat.answers.each do |answer| %>
+    <p>
+      <%= check_box_tag cat.id, answer.id %>
+      <%= answer.name %>
+    </p>
+  <% end %>
+  <% when 'long_answer' %>
+  <%= text_area_tag cat.id %>
+<% end %>
+<% end %>
+<div>
+  <%= link_to "Save", "#" %>
+</div>
