@@ -3,7 +3,7 @@ class CategorySubmission < ApplicationRecord
   belongs_to :category
   has_many :comments, dependent: :destroy
 
-  enum :status, {creator: 1, supervisor: 2, pic: 3}, scope: false
+  enum :status, {creator: 1, supervisor: 2, pic: 3}, scope: false, default: :creator
 
   def self.index_for_users(user)
     if user.report_to_id.nil?
