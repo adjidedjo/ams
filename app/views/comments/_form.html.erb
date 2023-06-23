@@ -1,6 +1,10 @@
-<%= simple_form_for([category_submission, category_submission.comments.build], html: { class: "form-inline"}) do |f| %>
-  <div class="form_group">
-    <%= f.input :body, label: false, html: {cols: 5, class: "form-control"}, placeholder: "Type your comment here ..." %>
-  </div>
-  <%= f.submit "Reply", class: "btn btn-primary btn-sm float-sm-right" %>
-<% end %>
+<div class="row">
+  <%= simple_form_for([category_submission, category_submission.comments.build]) do |f| %>
+    <div class="form_group">
+      <%= f.input :body, label: false, html: {cols: 5, class: "form-control"}, placeholder: "Type your comment here ..." %>
+    </div>
+    <div class="form_group pl-10">
+      <%= f.submit "Reply", class: "btn btn-primary btn-sm float-sm-left mt-2" %>
+    </div>
+  <% end %>
+</div>
