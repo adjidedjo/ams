@@ -29,6 +29,7 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
+                  <th>Applicant</th>
                   <th>Request Name</th>
                   <th>Addressed to</th>
                   <th>Status</th>
@@ -38,6 +39,7 @@
               <tbody>
                 <% @category_submissions.each do |allcat| %>
                   <tr>
+                    <td><%= allcat.user.full_name %></td>
                     <td><%= allcat.category.name %></td>
                     <td><%= allcat.category.unit.department.name %>-<%= allcat.category.unit.name %></td>
                     <td><%= allcat.published? ? "Approve" : allcat.status.humanize %></td>

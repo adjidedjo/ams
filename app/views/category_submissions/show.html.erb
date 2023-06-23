@@ -57,9 +57,11 @@
               <b class="d-block"><%= @category_submission.published? ? "Completed" : @category_submission.status.humanize %></b>
             </p>
           </div>
-          <div class="comment-post">
-            <%= render 'comments/form', category_submission: @category_submission %>
-          </div>
+          <% unless @category_submission.published? %>
+            <div class="comment-post">
+              <%= render 'comments/form', category_submission: @category_submission %>
+            </div>
+          <% end %>
           <div class="text-center mt-5 mb-3">
             <% if policy(@category_submission).next_approve? %>
               <%= link_to apply_label(@category_submission), next_approve_category_submission_path(@category_submission), 
