@@ -31,7 +31,7 @@ class CategorySubmissionPdf < Prawn::Document
           fill_color '000000'
         end
       end
-      stamp_at 'approved', [500, cursor]
+      stamp_at 'approved', [500, cursor] if @catsub.published?
     end
 
     def order_number
@@ -100,7 +100,7 @@ class CategorySubmissionPdf < Prawn::Document
         @question.each do |key, value|
           column_box([0, cursor], columns: 1, width: 500, reflow_margin: true) do
             @gap += 20
-            text_box "#{key} #{cursor}: #{value}", :size => 12, at: [0, cursor - @gap]
+            text_box "#{key} : #{value}", :size => 12, at: [0, cursor - @gap]
           end
         end
         move_down 10
@@ -128,7 +128,7 @@ class CategorySubmissionPdf < Prawn::Document
         move_down 5
         text "Unit/Section Head : #{@catsub.user.report_to.full_name}", :size => 10
         move_down 5
-        text "Approved by : #{User.find_by_email(@catsub.category.unit.email_approval_person).full_name}", :size => 10
+        text "Approved by : #{User.find_by_email(@catsub.category.unit.email_approval_person).full_name if @catsub.published?}", :size => 10
       end
     end
   end
