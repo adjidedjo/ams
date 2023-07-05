@@ -13,7 +13,7 @@ class CategorySubmissionsController < ApplicationController
       format.html
       format.pdf do
         pdf = CategorySubmissionPdf.new(@category_submission, @comments)
-        send_data pdf.render, filename: "#{@category.id}",
+        send_data pdf.render, filename: "#{@category.name} - #{@category_submission.user.full_name}",
           type: "application/pdf",
           disposition: "inline"
       end
