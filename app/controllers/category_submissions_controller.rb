@@ -9,6 +9,15 @@ class CategorySubmissionsController < ApplicationController
   def show
     @category = @category_submission.category
     @comments = @category_submission.comments.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = CategorySubmissionPdf.new(@category_submission, @comments)
+        send_data pdf.render, filename: "#{@category.id}",
+          type: "application/pdf",
+          disposition: "inline"
+      end
+    end
   end
 
   def next_approve

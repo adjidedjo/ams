@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1 or /categories/1.json
   def show
+    @category_questions = @category.questions.order(:created_at)
   end
 
   # GET /categories/new
@@ -76,7 +77,7 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :unit_id, questions_attributes: [
+      params.require(:category).permit(:name, :unit_id, :term_of_use, questions_attributes: [
         :_destroy,
         :id,
         :question_type,

@@ -48,10 +48,10 @@
           <br />
           <div class="text-muted">
             <p class="text-sm">Requested by
-              <b class="d-block"><%= "Aji" %></b>
+              <b class="d-block"><%= @category_submission.user.full_name %></b>
             </p>
             <p class="text-sm">Creator Supervisor
-              <b class="d-block">Ivan</b>
+              <b class="d-block"><%= @category_submission.user.report_to.full_name %></b>
             </p>
             <p class="text-sm">Status
               <b class="d-block"><%= @category_submission.published? ? "Completed" : @category_submission.status.humanize %></b>

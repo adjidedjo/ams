@@ -10,3 +10,8 @@
   position: absolute;
   bottom: 0
 }
+
+.trix-content {
+  max-height: 200px !important;
+  overflow-y: auto;
+}
